@@ -1,0 +1,11 @@
+{
+    // Pebble's syntax (fn, let, ->, // comments) is close enough to Rust's
+    // that Rust highlighting makes .pb files readable.
+    "files.associations": {
+        "*.pb": "rust",
+        "*.expected": "plaintext"
+    },
+    "C_Cpp.default.cppStandard": "c++17",
+    "C_Cpp.default.compilerPath": "/usr/bin/g++",
+    "C_Cpp.default.includePath": ["${workspaceFolder}/src"]
+}

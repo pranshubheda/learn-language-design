@@ -1,0 +1,43 @@
+{
+    // Run these with Ctrl+Shift+P -> "Tasks: Run Task", or Ctrl+Shift+B for the build.
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "build",
+            "type": "shell",
+            "command": "make",
+            "group": { "kind": "build", "isDefault": true },
+            "problemMatcher": ["$gcc"]
+        },
+        {
+            "label": "test",
+            "type": "shell",
+            "command": "make test",
+            "group": { "kind": "test", "isDefault": true },
+            "problemMatcher": ["$gcc"]
+        },
+        {
+            "label": "pebble: run / inspect current file",
+            "detail": "Open a .pb file first, then pick a mode",
+            "type": "shell",
+            "command": "./pebble ${input:mode} '${file}'",
+            "dependsOn": "build",
+            "problemMatcher": []
+        },
+        {
+            "label": "clean",
+            "type": "shell",
+            "command": "make clean",
+            "problemMatcher": []
+        }
+    ],
+    "inputs": [
+        {
+            "id": "mode",
+            "type": "pickString",
+            "description": "Which phase's output do you want to see?",
+            "options": ["--run", "--tokens", "--ast", "--bytecode"],
+            "default": "--run"
+        }
+    ]
+}

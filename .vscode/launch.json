@@ -1,0 +1,65 @@
+{
+    // Debug configurations. Pick one in the Run and Debug sidebar (Ctrl+Shift+D), then press F5.
+    // Each one rebuilds first (preLaunchTask) so you always debug the latest code.
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Debug compiler on current .pb file",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/pebble",
+            "args": ["${input:mode}", "${file}"],
+            "cwd": "${workspaceFolder}",
+            "MIMode": "gdb",
+            "miDebuggerPath": "/usr/bin/gdb",
+            "preLaunchTask": "build",
+            "stopAtEntry": false,
+            "externalConsole": false,
+            "setupCommands": [
+                { "description": "Show std::vector/std::string contents nicely", "text": "-enable-pretty-printing", "ignoreFailures": true }
+            ]
+        },
+        {
+            "name": "Debug compiler on an example",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/pebble",
+            "args": ["${input:mode}", "${input:example}"],
+            "cwd": "${workspaceFolder}",
+            "MIMode": "gdb",
+            "miDebuggerPath": "/usr/bin/gdb",
+            "preLaunchTask": "build",
+            "stopAtEntry": false,
+            "externalConsole": false,
+            "setupCommands": [
+                { "description": "Show std::vector/std::string contents nicely", "text": "-enable-pretty-printing", "ignoreFailures": true }
+            ]
+        }
+    ],
+    "inputs": [
+        {
+            "id": "mode",
+            "type": "pickString",
+            "description": "Which mode should pebble run in?",
+            "options": ["--run", "--tokens", "--ast", "--bytecode"],
+            "default": "--run"
+        },
+        {
+            "id": "example",
+            "type": "pickString",
+            "description": "Which program should be compiled?",
+            "options": [
+                "examples/hello.pb",
+                "examples/fib.pb",
+                "examples/primes.pb",
+                "examples/mutual.pb",
+                "examples/control.pb",
+                "tests/errors/type_bad_operator.pb",
+                "tests/errors/type_missing_return.pb",
+                "tests/errors/parse_missing_semicolon.pb",
+                "tests/errors/runtime_div_zero.pb"
+            ],
+            "default": "examples/fib.pb"
+        }
+    ]
+}

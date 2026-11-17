@@ -1,0 +1,12 @@
+12
+1
+negative
+zero
+positive
+false && loud(true):
+false
+true || loud(false):
+true
+true && loud(true):
+  (loud was called)
+true
